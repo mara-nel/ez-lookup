@@ -1,0 +1,93 @@
+	.pane {
+    background-color: #0A1719;
+}
+
+#header-bar {
+		background-color: #0A1719;
+		border-color: #0A1719;
+		color: #FFFFFF;
+}
+
+#bright {
+		color: #000000;
+}
+
+#left-menu {
+		background-color: #0A1719;
+		color: #FFFFFF;
+}
+
+#type-selection {
+    background-color: #FFFFFF;
+    color: #0A1719;
+    border-color: #0A1719;
+}
+
+#calc-button {
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+#immune-card {
+    background-color: #FF9F47;
+    text-align: center;
+    color: #0A1719;
+    border-color: #0A1719;
+}
+#immune {
+    background-color: #FF9F47;
+    color: #0A1719;
+    border-color: #0A1719;
+		text-align: center;
+}
+
+#resist-card {
+    background-color: #3FE35C;
+    color: #0A1719;
+    border-color: #0A1719;
+		text-align: center;
+}
+#very-resist {
+    background-color: #3FE35C;
+    color: #0A1719;
+    border-color: #0A1719;
+		text-align: center;
+    text-transform: uppercase;
+}
+#resist {
+    background-color: #3FE35C;
+    color: #0A1719;
+    border-color: #0A1719;
+		text-align: center;
+}
+
+
+#weak-card {
+    background-color: #FF5547;
+    color: #0A1719;
+    border-color: #0A1719;
+		text-align: center;
+}
+#very-weak {
+    background-color: #FF5547;
+    color: #0A1719;
+    border-color: #0A1719;
+		text-align: center;
+    text-transform: uppercase;
+}
+#weak {
+    background-color: #FF5547;
+    color: #0A1719;
+    border-color: #0A1719;
+		text-align: center;
+}
+
+
+
+#h1 {
+    text-align: center;
+}
+
+.card-aggressive .item{
+  background-color: aggressive;
+}
