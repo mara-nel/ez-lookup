@@ -7,47 +7,43 @@ typeCalculator.controller("Gen6Ctrl", function($scope, Types6, DamRecCalculator)
 
   //initialized as empty because default type is not assigned
   var type1= "";
-  var type2= "";
   var currentDRC=DamRecCalculator.emptyDRC();
 
   //create an object to lookup types by string name
   var lookup = Types6.getLookUp();
 
   //function called when CALC button is pressed
-  $scope.calculateAll = function(tName1,tName2) {
-    setType1(tName1);
-    setType2(tName2);
+  $scope.calculateAll = function(tName) {
+    setType1(tName);
     DamRecCalculator.resetDRC($scope.Types, currentDRC);
     DamRecCalculator.calculateDRC(type1,$scope.Types, currentDRC);
-    DamRecCalculator.calculateDRC(type2,$scope.Types, currentDRC);
     calculateWRI();
   };
 
   calculateWRI = function() {
     //initializes varies categories types could fall into
-    var weaknesses  = []; var resistances = []; var immunities  = [];
-    var veryWeak    = []; var veryResist  = [];
+    var weaknesses  = []; var resistances = []; var neutralities  = [];
 
     for (var prop in currentDRC) {
       if (currentDRC[prop] == 2) {weaknesses.push(prop);}
       else if (currentDRC[prop] == 0.5) {resistances.push(prop);}
-      else if (currentDRC[prop] == 0) {immunities.push(prop);}
-      else if (currentDRC[prop] == 4) {veryWeak.push(prop);}
-      else if (currentDRC[prop] == 0.25) {veryResist.push(prop);};
+      else {neutralities.push(prop);};
     };
     //pushes variables to scope
     $scope.weaknesses  = weaknesses;
     $scope.resistances = resistances;
-    $scope.immunities  = immunities;
-    $scope.veryWeak    = veryWeak;
-    $scope.veryResist  = veryResist;
+    $scope.neutralities  = neutralities;
+
   };
 
   setType1 = function(tName) {type1 = $scope.Types[lookup[tName]]};
-  setType2 = function(tName) {type2 = $scope.Types[lookup[tName]]};
-  $scope.setTypes = function(t1,t2) {
+  $scope.setTypes = function(t1) {
     setType1(t1);
-    setType2(t2);
+  };
+
+  //implementing from an example from brandyshea on the ionic team
+  $scope.showSelectValue = function(mySelect) {
+    console.log(mySelect);
   };
 })
 
@@ -72,10 +68,8 @@ typeCalculator.controller("Gen1Ctrl", function($scope, Types1, DamRecCalculator)
 
   $scope.calculateAll = function(tName1,tName2) {
     setType1(tName1);
-    setType2(tName2);
     DamRecCalculator.resetDRC($scope.Types, currentDRC);
     DamRecCalculator.calculateDRC(type1,$scope.Types, currentDRC);
-    DamRecCalculator.calculateDRC(type2,$scope.Types, currentDRC);
     calculateWRI();
   };
 
