@@ -1,6 +1,6 @@
 var typeCalculator = angular.module('typeCalculator.controllers', ['ionic', 'ngResource'])
 
-typeCalculator.controller("Gen6Ctrl", function($scope, Types6) {
+typeCalculator.controller("MatchupCtrl", function($scope, Types6) {
   // all types are created as objects with a name and lists of weaknesses,
   // resistances, and immunities
   $scope.Types = Types6.getTypes();
@@ -80,7 +80,7 @@ typeCalculator.controller("Gen6Ctrl", function($scope, Types6) {
 })
 
 
-typeCalculator.controller("Gen1Ctrl", function($scope, Types1) {
+typeCalculator.controller("PlayersCtrl", function($scope, Types1) {
   // all types are created as objects with a name and lists of weaknesses,
   // resistances, and immunities
   $scope.Types = Types1.getTypes();

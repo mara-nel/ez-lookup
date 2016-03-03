@@ -44,22 +44,22 @@ typeCalculator.config(function($stateProvider, $urlRouterProvider, $ionicConfigP
   })
   // Each tab has its own nav history stack:
 
-    .state('tab.gen6', {
-      url: '/gen6',
+    .state('tab.matchup', {
+      url: '/matchup',
       views: {
-        'tab-gen6': {
-          templateUrl: 'templates/tab-gen6.html',
-          controller: 'Gen6Ctrl'
+        'tab-matchup': {
+          templateUrl: 'templates/tab-matchup.html',
+          controller: 'MatchupCtrl'
         }
       }
     })
 
-    .state('tab.gen1', {
-      url: '/gen1',
+    .state('tab.players', {
+      url: '/players',
       views: {
-        'tab-gen1': {
-          templateUrl: 'templates/tab-gen1.html',
-          controller: 'Gen1Ctrl'
+        'tab-players': {
+          templateUrl: 'templates/tab-players.html',
+          controller: 'PlayersCtrl'
         }
       }
     })
@@ -77,6 +77,6 @@ typeCalculator.config(function($stateProvider, $urlRouterProvider, $ionicConfigP
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/gen6');
+  $urlRouterProvider.otherwise('/tab/matchup');
 
 });

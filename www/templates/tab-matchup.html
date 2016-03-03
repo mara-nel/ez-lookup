@@ -1,0 +1,37 @@
+<ion-view view-title="V 1.1 Matchups" id="bright">
+<div>
+  <ion-pane>
+    <ion-content>
+      <div class="list list-inset">
+        <!-- creates drop down selection for primary typing-->
+        <label class="item item-input item-select" id="type-selection">
+          <div class="input-label" id="type-selection" >Player:</div>
+          <select ng-model="player" id="type-selection" ng-change="calculateAll(player)">
+            <!--option value="" selected >Choose a type</option-->
+            <option ng-repeat="playa in Players">{{playa.name}}</option>
+          </select>
+        </label>
+      </div>
+      <!-- cards for imm, weak, and res-->
+      <div class=" list card">
+        <div class="item item-divider" id="matchup-header">WEAK TO:</div>
+        <div class="item" id="matchup-body" ng-repeat="types in weaknesses">
+          {{types}}
+        </div>
+      </div>
+      <div class=" list card">
+        <div class="item item-divider" id="matchup-header">RESISTS:</div>
+        <div class="item" id="matchup-body" ng-repeat="types in resistances">
+          {{types}}
+        </div>
+      </div>
+      <div class=" list card">
+        <div class="item item-divider" id="matchup-header">NEUTRAL TO:</div>
+        <div class="item" id="matchup-body" ng-repeat="types in neutralities">
+          {{types}}
+        </div>
+      </div>
+    </ion-content>
+  </ion-pane>
+</div>
+</ion-view>

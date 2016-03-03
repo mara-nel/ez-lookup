@@ -1,22 +1,22 @@
 var typeCalculator = angular.module('typeCalculator.controllers', ['ionic', 'ngResource'])
 
-typeCalculator.controller("Gen6Ctrl", function($scope, Types6, DamRecCalculator) {
+typeCalculator.controller("MatchupCtrl", function($scope, PlayersV1, DamRecCalculator) {
   // all types are created as objects within an object and contain a
   // name, weaknesses, resistances, and immunities
-  $scope.Types = Types6.getTypes();
+  $scope.Players = PlayersV1.getPlayers();
 
   //initialized as empty because default type is not assigned
   var type1= "";
   var currentDRC=DamRecCalculator.emptyDRC();
 
   //create an object to lookup types by string name
-  var lookup = Types6.getLookUp();
+  var lookup = PlayersV1.getLookUp();
 
   //function called when CALC button is pressed
   $scope.calculateAll = function(tName) {
     setType1(tName);
-    DamRecCalculator.resetDRC($scope.Types, currentDRC);
-    DamRecCalculator.calculateDRC(type1,$scope.Types, currentDRC);
+    DamRecCalculator.resetDRC($scope.Players, currentDRC);
+    DamRecCalculator.calculateDRC(type1,$scope.Players, currentDRC);
     calculateWRI();
   };
 
@@ -36,71 +36,17 @@ typeCalculator.controller("Gen6Ctrl", function($scope, Types6, DamRecCalculator)
 
   };
 
-  setType1 = function(tName) {type1 = $scope.Types[lookup[tName]]};
-  $scope.setTypes = function(t1) {
+  setType1 = function(tName) {type1 = $scope.Players[lookup[tName]]};
+  $scope.setPlayer = function(t1) {
     setType1(t1);
-  };
-
-  //implementing from an example from brandyshea on the ionic team
-  $scope.showSelectValue = function(mySelect) {
-    console.log(mySelect);
   };
 })
 
 
-typeCalculator.controller("Gen1Ctrl", function($scope, Types1, DamRecCalculator) {
-  // all types are created as objects with a name and lists of weaknesses,
-  // resistances, and immunities
-  $scope.Types = Types1.getTypes();
+typeCalculator.controller("PlayersCtrl", function($scope, PlayersV1) {
+    $scope.Players = PlayersV1.getPlayers();
 
-  //initialized as empty because default type is not assigned
-  var type1= "";
-  var type2= "";
-  var currentDRC=DamRecCalculator.emptyDRC();
-
-  //create an object to lookup types by string name
-  var lookup = Types1.getLookUp();
-
-  /*var lookup = {};
-  for (var prop in $scope.Types) {
-      lookup[$scope.Types[prop].name] = prop;
-  };*/
-
-  $scope.calculateAll = function(tName1,tName2) {
-    setType1(tName1);
-    DamRecCalculator.resetDRC($scope.Types, currentDRC);
-    DamRecCalculator.calculateDRC(type1,$scope.Types, currentDRC);
-    calculateWRI();
-  };
-
-  calculateWRI = function() {
-    //initializes varies categories types could fall into
-    var weaknesses  = []; var resistances = []; var immunities  = [];
-    var veryWeak    = []; var veryResist  = [];
-
-    for (var prop in currentDRC) {
-      if (currentDRC[prop] == 2) {weaknesses.push(prop);}
-      else if (currentDRC[prop] == 0.5) {resistances.push(prop);}
-      else if (currentDRC[prop] == 0) {immunities.push(prop);}
-      else if (currentDRC[prop] == 4) {veryWeak.push(prop);}
-      else if (currentDRC[prop] == 0.25) {veryResist.push(prop);};
-    };
-    //pushes variables to scope
-    $scope.weaknesses  = weaknesses;
-    $scope.resistances = resistances;
-    $scope.immunities  = immunities;
-    $scope.veryWeak    = veryWeak;
-    $scope.veryResist  = veryResist;
-  };
-
-  setType1 = function(tName) {type1 = $scope.Types[lookup[tName]]};
-  setType2 = function(tName) {type2 = $scope.Types[lookup[tName]]};
-  $scope.setTypes = function(t1,t2) {
-    setType1(t1);
-    setType2(t2);
-  };
 })
-
 
 typeCalculator.controller("TypeCtrl", function($scope, $ionicSideMenuDelegate, $location) {
   $scope.toggleMenu = function() {

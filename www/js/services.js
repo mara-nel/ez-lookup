@@ -40,7 +40,7 @@ angular.module('typeCalculator.services', ['ionic','ngResource'])
   }
   })
 
-.factory('Types6', function() {
+.factory('PlayersV1', function() {
   //creating symbolic constants for types
   var  ZERO="Zero";var ONE="One";var TWO="Two";var THRE="Three";var FOUR="Four";
   var FIVE="Five";var SIX="Six";var SEVN="Seven";var EIGH="Eight";var NINE="Nine";
@@ -58,7 +58,7 @@ angular.module('typeCalculator.services', ['ionic','ngResource'])
     eigh: {name:EIGH, weakTo:[ONE,  FOUR, FIVE, SIX,  NINE],  resists:[THRE, FIVE, SEVN] },
     nine: {name:NINE, weakTo:[ZERO, FOUR, SEVN],              resists:[FIVE, NINE] }
     }
-  
+
 
   //object to lookup types by name
   var lookup = {};
@@ -67,10 +67,10 @@ angular.module('typeCalculator.services', ['ionic','ngResource'])
   };
 
   return {
-    getTypes: function() {
+    getPlayers: function() {
       return types;
     },
-    getType: function(typeId) {
+    getPlayer: function(typeId) {
       return types.typeId;
     },
     getLookUp: function() {

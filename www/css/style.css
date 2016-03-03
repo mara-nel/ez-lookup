@@ -2,14 +2,24 @@
     background-color: #0A1719;
 }
 
-#header-bar {
-		background-color: #0A1719;
+.custom-dark{
+		background-color: #0F425A!important;
 		border-color: #0A1719;
 		color: #FFFFFF;
 }
 
+#left-menu-head{
+		background-color: #0F425A;
+		border-color: #0A1719;
+		color: #FFFFFF;
+}
+
+#left-menu-body{
+		background-color: #0A1719;
+}
+
 #bright {
-		color: #000000;
+		color: #FFFFFF;
 }
 
 #left-menu {
@@ -23,66 +33,25 @@
     border-color: #0A1719;
 }
 
-#calc-button {
+#matchup-header {
+    background-color: #0F425A;
     color: #FFFFFF;
-    border-color: #FFFFFF;
-}
-
-#neutral-card {
-    background-color: #FF9F47;
-    text-align: center;
-    color: #0A1719;
     border-color: #0A1719;
+		text-align: center;
 }
-#neutral {
-    background-color: #FF9F47;
+#matchup-body {
+    background-color: #A2B6BF	;
     color: #0A1719;
     border-color: #0A1719;
 		text-align: center;
 }
 
-#resist-card {
-    background-color: #3FE35C;
-    color: #0A1719;
-    border-color: #0A1719;
-		text-align: center;
-}
-#very-resist {
-    background-color: #3FE35C;
-    color: #0A1719;
-    border-color: #0A1719;
-		text-align: center;
-    text-transform: uppercase;
-}
-#resist {
-    background-color: #3FE35C;
-    color: #0A1719;
-    border-color: #0A1719;
-		text-align: center;
-}
+#players {
+		border-color: #0A1719;
+		color: #0A1719;
+		background-color: #FFFFFF;
 
-
-#weak-card {
-    background-color: #FF5547;
-    color: #0A1719;
-    border-color: #0A1719;
-		text-align: center;
 }
-#very-weak {
-    background-color: #FF5547;
-    color: #0A1719;
-    border-color: #0A1719;
-		text-align: center;
-    text-transform: uppercase;
-}
-#weak {
-    background-color: #FF5547;
-    color: #0A1719;
-    border-color: #0A1719;
-		text-align: center;
-}
-
-
 
 #h1 {
     text-align: center;
