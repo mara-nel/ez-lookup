@@ -1,5 +1,5 @@
 'use strict';
-angular.module('typeCalculator.services', ['ionic','ngResource'])
+angular.module('theDataBank.services', ['ionic','ngResource'])
 
 .factory('DamRecCalculator', function() {
   //helper functions to see if a given type is in another types W/R/I's
@@ -45,21 +45,28 @@ angular.module('typeCalculator.services', ['ionic','ngResource'])
   var  ZERO="Zero";var ONE="One";var TWO="Two";var THRE="Three";var FOUR="Four";
   var FIVE="Five";var SIX="Six";var SEVN="Seven";var EIGH="Eight";var NINE="Nine";
 
-
   var types = {
-    zero: {name:ZERO, weakTo:[FIVE],                          resists:[ONE,  THRE, FOUR, SEVN, NINE] },
-    one:  {name:ONE,  weakTo:[TWO,  SEVN, NINE],              resists:[ONE,  THRE, SIX] },
-    two:  {name:TWO,  weakTo:[ZERO, TWO,  FIVE, SIX],         resists:[ONE,  THRE, FOUR] },
-    thre: {name:THRE, weakTo:[],                              resists:[ZERO, ONE,  TWO,  THRE, FOUR, FIVE, NINE] },
-    four: {name:FOUR, weakTo:[],                              resists:[] },
-    five: {name:FIVE, weakTo:[TWO,  FIVE, SIX,  SEVN],        resists:[ONE,  THRE] },
-    six:  {name:SIX,  weakTo:[TWO,  FOUR, FIVE, SEVN],        resists:[ONE,  SIX,  NINE] },
-    sevn: {name:SEVN, weakTo:[THRE, FOUR, SEVN, NINE],        resists:[ONE,  TWO,  SIX] },
-    eigh: {name:EIGH, weakTo:[ONE,  FOUR, FIVE, SIX,  NINE],  resists:[THRE, FIVE, SEVN] },
-    nine: {name:NINE, weakTo:[ZERO, FOUR, SEVN],              resists:[FIVE, NINE] }
+    zero: {name:ZERO, weakTo:[FIVE],                          resists:[ONE,  THRE, FOUR, SEVN, NINE],
+            role: {name:"Trapper", desc:"Leaving active position deals 1/4 damage for opponent"} },
+    one:  {name:ONE,  weakTo:[TWO,  SEVN, NINE],              resists:[ONE,  THRE, SIX],
+            role: {name:"Sponge", desc:"Recovers 1/4 when hit by resisted move"} },
+    two:  {name:TWO,  weakTo:[ZERO, TWO,  FIVE, SIX],         resists:[ONE,  THRE, FOUR],
+            role: {name:"Scout", desc:"Can switch immediately after attacking"} },
+    thre: {name:THRE, weakTo:[],                              resists:[ZERO, ONE,  TWO,  THRE, FOUR, FIVE, NINE],
+            role: {name:"Medic", desc:"Fully heals whoever it replaces as active"} },
+    four: {name:FOUR, weakTo:[],                              resists:[],
+            role: {name:"Waller", desc:"Recieves half damage when at full health"} },
+    five: {name:FIVE, weakTo:[TWO,  FIVE, SIX,  SEVN],        resists:[ONE,  THRE],
+            role: {name:"Gurantee", desc:"Last attack hits even if knocked out"} },
+    six:  {name:SIX,  weakTo:[TWO,  FOUR, FIVE, SEVN],        resists:[ONE,  SIX,  NINE],
+            role: {name:"Wild Card", desc:"Can learn three moves"} },
+    sevn: {name:SEVN, weakTo:[THRE, FOUR, SEVN, NINE],        resists:[ONE,  TWO,  SIX],
+            role: {name:"Survivor", desc:"Recovers 1//8 at the end of every turn"} },
+    eigh: {name:EIGH, weakTo:[ONE,  FOUR, FIVE, SIX,  NINE],  resists:[THRE, FIVE, SEVN],
+            role: {name:"Mixer", desc: "Recieved STAB is halved and non STAB is doubled"}, },
+    nine: {name:NINE, weakTo:[ZERO, FOUR, SEVN],              resists:[FIVE, NINE],
+            role: {name:"Heavy Hitter", desc: "Outputted damage is doubled if the same move was used last turn"}, }
     }
-
-
   //object to lookup types by name
   var lookup = {};
   for (var prop in types) {
@@ -70,11 +77,17 @@ angular.module('typeCalculator.services', ['ionic','ngResource'])
     getPlayers: function() {
       return types;
     },
-    getPlayer: function(typeId) {
-      return types.typeId;
+    getPlayer: function(name) {
+      //return lookup[name];
+      return types[lookup[name]];
+      //return types.zero;
     },
     getLookUp: function() {
       return lookup;
     }
-  }
+  };
+})
+
+.factory('MovesV1', function() {
+
 });

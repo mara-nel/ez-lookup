@@ -1,5 +1,5 @@
 'use strict';
-angular.module('typeCalculator.services', ['ionic','ngResource'])
+angular.module('theDataBank.services', ['ionic','ngResource'])
 
 .factory('Types6', function() {
   //creating symbolic constants for types

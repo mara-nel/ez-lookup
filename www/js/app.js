@@ -1,16 +1,16 @@
 'use strict';
 
-//typeCalculator App
+//theDataBank App
 
 // 'tyepCalculator' is the name of this angular module
 // the 2nd parameter is an array of 'requires'
-// 'typeCalculator.services' is found in services.js
-// 'typeCalculator.controllers' is found in controllers.js
-var typeCalculator = angular.module('typeCalculator',
-        ['ionic', 'ngResource', 'typeCalculator.controllers', 'typeCalculator.services'])
+// 'theDataBank.services' is found in services.js
+// 'theDataBank.controllers' is found in controllers.js
+var theDataBank = angular.module('theDataBank',
+        ['ionic', 'ngResource', 'theDataBank.controllers', 'theDataBank.services'])
 
 
-typeCalculator.run(function($ionicPlatform) {
+theDataBank.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -28,7 +28,7 @@ typeCalculator.run(function($ionicPlatform) {
   });
 })
 
-typeCalculator.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+theDataBank.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -60,6 +60,16 @@ typeCalculator.config(function($stateProvider, $urlRouterProvider, $ionicConfigP
         'tab-players': {
           templateUrl: 'templates/tab-players.html',
           controller: 'PlayersCtrl'
+        }
+      }
+    })
+
+    .state('tab.players-detail', {
+      url: '/players/:playa',
+      views: {
+        'tab-players': {
+          templateUrl: "templates/player-detail.html",
+          controller: 'PlayerDetailCtrl'
         }
       }
     })

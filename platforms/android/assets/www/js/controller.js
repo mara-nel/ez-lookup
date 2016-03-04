@@ -1,6 +1,6 @@
-var typeCalculator = angular.module('typeCalculator.controllers', ['ionic', 'ngResource'])
+var theDataBank = angular.module('theDataBank.controllers', ['ionic', 'ngResource'])
 
-typeCalculator.controller("MatchupCtrl", function($scope, Types6) {
+theDataBank.controller("MatchupCtrl", function($scope, Types6) {
   // all types are created as objects with a name and lists of weaknesses,
   // resistances, and immunities
   $scope.Types = Types6.getTypes();
@@ -80,7 +80,7 @@ typeCalculator.controller("MatchupCtrl", function($scope, Types6) {
 })
 
 
-typeCalculator.controller("PlayersCtrl", function($scope, Types1) {
+theDataBank.controller("PlayersCtrl", function($scope, Types1) {
   // all types are created as objects with a name and lists of weaknesses,
   // resistances, and immunities
   $scope.Types = Types1.getTypes();
@@ -160,7 +160,7 @@ typeCalculator.controller("PlayersCtrl", function($scope, Types1) {
 })
 
 
-typeCalculator.controller("TypeCtrl", function($scope, $ionicSideMenuDelegate, $location) {
+theDataBank.controller("TypeCtrl", function($scope, $ionicSideMenuDelegate, $location) {
   $scope.toggleMenu = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };

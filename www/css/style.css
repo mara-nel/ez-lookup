@@ -8,6 +8,9 @@
 		color: #FFFFFF;
 }
 
+.white{
+		color: #FFFFFF;
+}
 #left-menu-head{
 		background-color: #0F425A;
 		border-color: #0A1719;
@@ -56,6 +59,7 @@
 #h1 {
     text-align: center;
 }
+
 
 .card-aggressive .item{
   background-color: aggressive;

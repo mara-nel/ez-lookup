@@ -4,10 +4,10 @@
     <ion-content>
 
       <div class="list list-inset">
-        <div class="item item-icon-right" ng-repeat="playa in Players" id="players" href="#">
+        <ion-item class="item item-icon-right" ng-repeat="playa in Players" id="players" href="#/tab/players/{{playa.name}}">
           <i class="icon ion-chevron-right"></i>
           {{playa.name}}
-        </div>
+        </ion-item>
       </div>
     </ion-content>
   </ion-pane>
