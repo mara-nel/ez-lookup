@@ -1,8 +1,13 @@
 <ion-view view-title=" {{playa.name}} ">
   <ion-content>
     <div class="list card">
-      <div class="item item-divider">{{playa.role.name}}</div class>
-      <div class="item" style="white-space:normal">{{playa.role.desc}}</div class>
+      <div class="item item-divider">{{playa.role.name}}</div>
+      <div class="item" style="white-space:normal">{{playa.role.desc}}</div>
     </div>
+    <div class="list card">
+      <div class="item item-divider">Learnable Moves</div>
+      <div ng-repeat="moves in playa.mvpl">
+        <div class="item"> {{moves}}: {{Moves.getMove(moves).name}}</div>
+      </div>
   </ion-content>
 </ion-view>
