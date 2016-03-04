@@ -1,76 +1,142 @@
 'use strict';
 angular.module('theDataBank.services', ['ionic','ngResource'])
 
-.factory('Types6', function() {
-  //creating symbolic constants for types
-  var  BUG="Bug";var DARK="Dark";var DRAG="Dragon";var ELEC="Electric";var FAIR="Fairy";
-  var FIGH="Fighting";var FIRE="Fire";var FLY="Flying";var GHOS="Ghost";var GRAS="Grass";
-  var GROU="Ground";var ICE="Ice"; var NORM="Normal";var POIS="Poison";var PSYC="Psychic";
-  var ROCK="Rock";var STEE="Steel";var WATE="Water";
+.factory('DamRecCalculator', function() {
+  //helper functions to see if a given type is in another types W/R/I's
+  var isInWeak= function(t1,t2,typeList) {
+    var index = 0;
+    index = t1.weakTo.indexOf(typeList[t2].name);
+    if (index != -1) {return true;}
+    else{return false;}; };
+  var isInRes= function(t1,t2,typeList) {
+    var index = 0;
+    index = t1.resists.indexOf(typeList[t2].name);
+    if (index != -1) {return true;}
+    else{return false;}; };
 
-  var types = {
-    bug:  {name:BUG,  weakTo:[FIRE,FLY,ROCK],            resists:[FIGH,GRAS,GROU],      immuneTo:[] },
-    dark: {name:DARK, weakTo:[BUG,FIGH,FAIR],            resists:[DARK,GHOS],           immuneTo:[PSYC] },
-    drag: {name:DRAG, weakTo:[DRAG,ICE,FAIR],            resists:[ELEC,FIRE,GRAS,WATE], immuneTo:[] },
-    elec: {name:ELEC, weakTo:[GROU],                     resists:[ELEC,FLY,STEE],       immuneTo:[] },
-    fair: {name:FAIR, weakTo:[POIS,STEE],                resists:[BUG,DARK,FIGH],       immuneTo:[DRAG] },
-    figh: {name:FIGH, weakTo:[FAIR,FLY,PSYC],            resists:[BUG,DARK,ROCK],       immuneTo:[] },
-    fire: {name:FIRE, weakTo:[GROU,ROCK,WATE],           resists:[BUG,FAIR,FIRE,GRAS,ICE,STEE], immuneTo:[] },
-    fly:  {name:FLY,  weakTo:[ELEC,ICE,ROCK],            resists:[BUG,FIGH,GRAS],       immuneTo:[GROU] },
-    ghos: {name:GHOS, weakTo:[DARK,GHOS],                resists:[BUG,POIS],            immuneTo:[FIGH, NORM ] },
-    gras: {name:GRAS, weakTo:[BUG,FIRE,FLY,ICE,POIS],    resists:[ELEC,GRAS,GROU,WATE], immuneTo:[] },
-    grou: {name:GROU, weakTo:[GRAS,ICE,WATE],            resists:[POIS,ROCK],           immuneTo:[ELEC] },
-    ice:  {name:ICE,  weakTo:[FIGH,FIRE,ROCK,STEE],      resists:[ICE],                 immuneTo:[] },
-    norm: {name:NORM, weakTo:[FIGH],                     resists:[],                    immuneTo:[GHOS] },
-    pois: {name:POIS, weakTo:[GROU,PSYC],                resists:[BUG,FAIR,FIGH,GRAS,POIS], immuneTo:[] },
-    psyc: {name:PSYC, weakTo:[BUG,DARK,GHOS],            resists:[FIGH,PSYC],           immuneTo:[] },
-    rock: {name:ROCK, weakTo:[FIGH,GRAS,GROU,STEE,WATE], resists:[FIRE,FLY,NORM,POIS],  immuneTo:[] },
-    stee: {name:STEE, weakTo:[FIGH,FIRE,GROU],           resists:[BUG,DRAG,FAIR,FLY,GRAS,ICE,NORM,PSYC,ROCK,STEE], immuneTo:[POIS] },
-    wate: {name:WATE, weakTo:[ELEC,GRAS],                resists:[FIRE,ICE,STEE,WATE],  immuneTo:[] },
-  };
-
+  //helper function to set DamageRecievedCalculator appropriately
+  var isWeak = function(t1,typeList,drc) {drc[typeList[t1].name] *= 2.0;};
+  var isRes  = function(t1,typeList,drc) {drc[typeList[t1].name] *= 0.5;};
+  var isNeu  = function(t1,typeList,drc) {drc[typeList[t1].name] *= 1.0;};
 
   return {
-    getTypes: function() {
-      return types;
+    emptyDRC: function() {
+      return {}
     },
-    getType: function(typeId) {
-      return types.typeId;
+    resetDRC: function(typeList, drc) {
+      for (var prop in typeList) {
+          drc[typeList[prop].name] = 1.0;
+      }
+    },
+    calculateDRC: function(tObj1,typeList,drc) {
+      if(typeof tObj1 === 'undefined'){} else {
+        for (var prop in typeList) {
+          if (isInWeak(tObj1,prop,typeList) == true) {isWeak(prop,typeList,drc);}
+          else if (isInRes(tObj1,prop,typeList) == true) {isRes(prop,typeList,drc);}
+          else {isNeu(prop,typeList,drc);};
+        };
+      };
     }
   }
-})
+  })
 
-.factory('Types1', function() {
+theDataBank.factory('PlayersV1', function() {
   //creating symbolic constants for types
-  var BUG="Bug";var DRAG="Dragon";var ELEC="Electric";var FIGH="Fighting";var FIRE="Fire";
-  var FLY="Flying";var GHOS="Ghost";var GRAS="Grass";var GROU="Ground";var ICE="Ice";
-  var NORM="Normal";var POIS="Poison";var PSYC="Psychic";var ROCK="Rock";var WATE="Water";
+  var  ZERO="Zero";var ONE="One";var TWO="Two";var THRE="Three";var FOUR="Four";
+  var FIVE="Five";var SIX="Six";var SEVN="Seven";var EIGH="Eight";var NINE="Nine";
 
   var types = {
-    bug:  {name:BUG,  weakTo:[POIS,FIRE,FLY,ROCK],    resists:[FIGH,GRAS,GROU],      immuneTo:[] },
-    drag: {name:DRAG, weakTo:[DRAG,ICE],              resists:[ELEC,FIRE,GRAS,WATE], immuneTo:[] },
-    elec: {name:ELEC, weakTo:[GROU],                  resists:[ELEC,FLY],            immuneTo:[] },
-    figh: {name:FIGH, weakTo:[FLY,PSYC],              resists:[BUG,ROCK],            immuneTo:[] },
-    fire: {name:FIRE, weakTo:[GROU,ROCK,WATE],        resists:[BUG,FIRE,GRAS],       immuneTo:[] },
-    fly:  {name:FLY,  weakTo:[ELEC,ICE,ROCK],         resists:[BUG,FIGH,GRAS],       immuneTo:[GROU] },
-    ghos: {name:GHOS, weakTo:[GHOS],                  resists:[POIS],                immuneTo:[FIGH, NORM ] },
-    gras: {name:GRAS, weakTo:[BUG,FIRE,FLY,ICE,POIS], resists:[ELEC,GRAS,GROU,WATE], immuneTo:[] },
-    grou: {name:GROU, weakTo:[GRAS,ICE,WATE],         resists:[POIS,ROCK],           immuneTo:[ELEC] },
-    ice:  {name:ICE,  weakTo:[FIGH,FIRE,ROCK],        resists:[ICE],                 immuneTo:[] },
-    norm: {name:NORM, weakTo:[FIGH],                  resists:[],                    immuneTo:[GHOS] },
-    pois: {name:POIS, weakTo:[GROU,PSYC,BUG],         resists:[FIGH,GRAS,POIS],      immuneTo:[] },
-    psyc: {name:PSYC, weakTo:[BUG],                   resists:[FIGH,PSYC],           immuneTo:[GHOS] },
-    rock: {name:ROCK, weakTo:[FIGH,GRAS,GROU,WATE],   resists:[FIRE,FLY,NORM,POIS],  immuneTo:[] },
-    wate: {name:WATE, weakTo:[ELEC,GRAS],             resists:[FIRE,ICE,WATE],       immuneTo:[] }
+    zero: {name:  ZERO, weakTo:[FIVE],                          resists:[ONE,  THRE, FOUR, SEVN, NINE],
+            role: {name:"Trapper", desc:"Leaving active position deals 1/4 damage for opponent"},
+            mvpl: [0,4,10,12,19] },
+    one:  {name:  ONE,  weakTo:[TWO,  SEVN, NINE],              resists:[ONE,  THRE, SIX],
+            role: {name:"Sponge", desc:"Recovers 1/4 when hit by resisted move"},
+            mvpl: [1,13,15,17,19] },
+    two:  {name:  TWO,  weakTo:[ZERO, TWO,  FIVE, SIX],         resists:[ONE,  THRE, FOUR],
+            role: {name:"Scout", desc:"Can switch immediately after attacking"},
+            mvpl: [2,5,7] },
+    thre: {name:  THRE, weakTo:[],                              resists:[ZERO, ONE,  TWO,  THRE, FOUR, FIVE, NINE],
+            role: {name:"Medic", desc:"Fully heals whoever it replaces as active"},
+            mvpl: [3,11,13,14,15,16,17,18,19] },
+    four: {name:  FOUR, weakTo:[],                              resists:[],
+            role: {name:"Waller", desc:"Recieves half damage when at full health"},
+            mvpl: [4,12,16,17] },
+    five: {name:  FIVE, weakTo:[TWO,  FIVE, SIX,  SEVN],        resists:[ONE,  THRE],
+            role: {name:"Gurantee", desc:"Last attack hits even if knocked out"},
+            mvpl: [4,5,14] },
+    six:  {name:  SIX,  weakTo:[TWO,  FOUR, FIVE, SEVN],        resists:[ONE,  SIX,  NINE],
+            role: {name:"Wild Card", desc:"Can learn three moves"},
+            mvpl: [6,5,12,13] },
+    sevn: {name:  SEVN, weakTo:[THRE, FOUR, SEVN, NINE],        resists:[ONE,  TWO,  SIX],
+            role: {name:"Survivor", desc:"Recovers 1/8 at the end of every turn"},
+            mvpl: [7,14,16] },
+    eigh: {name:  EIGH, weakTo:[ONE,  FOUR, FIVE, SIX,  NINE],  resists:[THRE, FIVE, SEVN],
+            role: {name:"Mixer", desc: "Recieved STAB is halved and non STAB is doubled"},
+            mvpl: [8,16,17] },
+    nine: {name:  NINE, weakTo:[ZERO, FOUR, SEVN],              resists:[FIVE, NINE],
+            role: {name:"Heavy Hitter", desc: "Outputted damage is doubled if the same move was used last turn"},
+            mvpl: [7,9,12] }
+    }
+  //object to lookup types by name
+  var lookup = {};
+  for (var prop in types) {
+      lookup[types[prop].name] = prop;
   };
 
-
   return {
-    getTypes: function() {
+    getPlayers: function() {
       return types;
     },
-    getType: function(typeId) {
-      return types.typeId;
+    getPlayer: function(name) {
+      //return lookup[name];
+      return types[lookup[name]];
+      //return types.zero;
+    },
+    getLookUp: function() {
+      return lookup;
+    }
+  };
+})
+
+theDataBank.factory('MovesV1', function() {
+  var  ZERO="Zero";var ONE="One";var TWO="Two";var THRE="Three";var FOUR="Four";
+  var FIVE="Five";var SIX="Six";var SEVN="Seven";var EIGH="Eight";var NINE="Nine";
+
+  var moves = {
+    zero: {id:0,  name:ZERO+" Attack", desc:ZERO+"'s damaging attack"},
+    one:  {id:1,  name:ONE +" Attack", desc:ONE +"'s damaging attack"},
+    two:  {id:2,  name:TWO +" Attack", desc:TWO +"'s damaging attack"},
+    thre: {id:3,  name:THRE+" Attack", desc:THRE+"'s damaging attack"},
+    four: {id:4,  name:FOUR+" Attack", desc:FOUR+"'s damaging attack"},
+    five: {id:5,  name:FIVE+" Attack", desc:FIVE+"'s damaging attack"},
+    six:  {id:6,  name:SIX +" Attack", desc:SIX +"'s damaging attack"},
+    sevn: {id:7,  name:SEVN+" Attack", desc:SEVN+"'s damaging attack"},
+    eigh: {id:8,  name:EIGH+" Attack", desc:EIGH+"'s damaging attack"},
+    nine: {id:9,  name:NINE+" Attack", desc:NINE+"'s damaging attack"},
+    ten:  {id:10, name:"Drag Out",    desc:"The opponent's most recently relieved becomes their active"},
+    elvn: {id:11, name:"Sacrifice",   desc:"Loses all remaining health in order to fully revive a teammate"},
+    twlv: {id:12, name:"Pursuit",     desc:"Does 1/2 to recently relieved if switched this turn, else only 1/8"},
+    thtn: {id:13, name:"Inversion",   desc:"Switches target's weaknesses and resistances, can target anyone"},
+    frtn: {id:14, name:"Drain Spell", desc:"Until opponent's active is relieved it takes 1/8 between turns"},
+    fvtn: {id:15, name:"Fortify",     desc:"Target's neutrals become resistances, can target anyone"},
+    sxtn: {id:16, name:"Absorb",      desc:"Deals 1/4 and heals 1/4"},
+    svtn: {id:17, name:"Ignore",      desc:"Target's weaknesses become neutrals, can target anyone"},
+    ehtn: {id:18, name:"Reset",       desc:"Resets every player's weaknesses, resistances, and neutrals"},
+    nntn: {id:19, name:"Death Wish",    desc:"If user is killed from active damage then opponent's active is killed, always goes first"}
+  }
+
+  //object to lookup types by name
+  var lookup = {};
+  for (var prop in moves) {
+      lookup[moves[prop].id] = prop;
+  };
+
+  return {
+    getMoves: function() {
+      return moves;
+    },
+    getMove: function(id) {
+      return moves[lookup[id]];
     }
   }
-})
+});

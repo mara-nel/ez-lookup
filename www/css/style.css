@@ -36,7 +36,7 @@
     border-color: #0A1719;
 }
 
-#matchup-header {
+#header {
     background-color: #0F425A;
     color: #FFFFFF;
     border-color: #0A1719;
@@ -49,12 +49,26 @@
 		text-align: center;
 }
 
-#players {
+#clickable-list {
 		border-color: #0A1719;
 		color: #0A1719;
 		background-color: #FFFFFF;
-
 }
+
+#nonclickable-list {
+		background-color: #A2B6BF;
+		color: #0A1719;
+		border-color: #0A1719;
+		text-align: center;
+		white-space: normal;
+}
+
+#expanded-list {
+		background-color: #0A1719;
+		color: #FFFFFF;
+		white-space: normal;
+}
+
 
 #h1 {
     text-align: center;

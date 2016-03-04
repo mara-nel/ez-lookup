@@ -64,6 +64,16 @@ theDataBank.config(function($stateProvider, $urlRouterProvider, $ionicConfigProv
       }
     })
 
+    .state('tab.players-detail', {
+      url: '/players/:playa',
+      views: {
+        'tab-players': {
+          templateUrl: "templates/player-detail.html",
+          controller: 'PlayerDetailCtrl'
+        }
+      }
+    })
+
     .state('tab.about', {
       url: '/about',
       views: {

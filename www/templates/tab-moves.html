@@ -1,0 +1,15 @@
+<ion-view view-title="Moves" id="bright">
+<div>
+  <ion-pane>
+    <ion-content>
+      <div class="list list-inset">
+        <ion-item class="item item-icon-right" ng-repeat="m in Moves"
+        id="clickable-list" href="#/tab/moves/{{m.id}}">
+          <i class="icon ion-chevron-right"></i>
+          M{{m.id}}: {{m.name}}
+        </ion-item>
+      </div>
+    </ion-content>
+  </ion-pane>
+</div>
+</ion-view>

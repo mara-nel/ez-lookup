@@ -1,0 +1,14 @@
+<ion-view view-title=" M{{move.id}} ">
+  <ion-content>
+    <div class="list card">
+      <div class="item" id="header">{{move.name}}</div>
+      <div class="item" id="nonclickable-list">{{move.desc}}</div>
+    </div>
+    <div class="list card">
+      <div class="item" id="header">Learned By</div>
+      <div ng-repeat="casteId in learnedBy">
+        <div class="item">{{casteId}}</div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -68,12 +68,31 @@ theDataBank.config(function($stateProvider, $urlRouterProvider, $ionicConfigProv
       url: '/players/:playa',
       views: {
         'tab-players': {
-          templateUrl: "templates/player-detail.html",
+          templateUrl: 'templates/player-detail.html',
           controller: 'PlayerDetailCtrl'
         }
       }
     })
 
+    .state('tab.moves', {
+      url: '/moves',
+      views: {
+        'tab-moves': {
+          templateUrl: 'templates/tab-moves.html',
+          controller: 'MovesCtrl'
+        }
+      }
+    })
+
+    .state('tab.moves-detail', {
+      url: '/moves/:move',
+      views: {
+        'tab-moves': {
+          templateUrl: 'templates/move-detail.html',
+          controller: 'MoveDetailCtrl'
+        }
+      }
+    })
     .state('tab.about', {
       url: '/about',
       views: {

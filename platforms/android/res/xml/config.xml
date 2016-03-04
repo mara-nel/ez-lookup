@@ -39,12 +39,12 @@
     <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-    <name>pokemon-type</name>
+    <name>game-info</name>
     <description>
         An Ionic Framework and Cordova project.
     </description>
-    <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
+    <author email="wesslnelson@aol.com" href="http://example.com.com/">
+      Wes Nelson
     </author>
     <content src="index.html" />
     <access origin="*" />
