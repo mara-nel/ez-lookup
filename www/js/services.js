@@ -54,25 +54,25 @@ theDataBank.factory('DamRecCalculator', function() {
 theDataBank.factory('PlayersV1', function() {
 
   var types = {
-    zero: {name:  ZERO, weakTo:[FIVE],                          resists:[ONE,  THRE, FOUR, SEVN, NINE],
-            role: {name:"Trapper", desc:"Leaving active position deals 1/4 damage for opponent"}, mvpl: MP0 },
-    one:  {name:  ONE,  weakTo:[TWO,  SEVN, NINE],              resists:[ONE,  THRE, SIX],
+    zero: {name:  ZERO, weakTo:[FIVE],                         resists:[ONE,  THRE, FOUR, SEVN, NINE],
+            role: {name:"Trapper", desc:"If opponent's active is relieved then it takes 1/4 damage"}, mvpl: MP0 },
+    one:  {name:  ONE,  weakTo:[TWO, NINE],                    resists:[ONE,  THRE, FIVE, SIX],
             role: {name:"Sponge", desc:"Recovers 1/4 when hit by resisted move"},  mvpl: MP1 },
-    two:  {name:  TWO,  weakTo:[ZERO, TWO,  FIVE, SIX],         resists:[ONE,  THRE, FOUR],
+    two:  {name:  TWO,  weakTo:[ZERO, TWO,  FIVE, SIX],        resists:[ONE,  THRE, FOUR],
             role: {name:"Scout", desc:"Can switch immediately after attacking"}, mvpl:  MP2},
-    thre: {name:  THRE, weakTo:[],                              resists:[ZERO, ONE,  TWO,  THRE, FOUR, FIVE, NINE],
+    thre: {name:  THRE, weakTo:[],                             resists:[ZERO, ONE,  TWO,  THRE, FOUR, FIVE, NINE],
             role: {name:"Medic", desc:"Fully heals whoever it replaces as active"}, mvpl: MP3 },
-    four: {name:  FOUR, weakTo:[],                              resists:[],
+    four: {name:  FOUR, weakTo:[],                             resists:[],
             role: {name:"Waller", desc:"Recieves half damage when at full health"}, mvpl:  MP4},
-    five: {name:  FIVE, weakTo:[TWO,  FIVE, SIX,  SEVN],        resists:[ONE,  THRE],
+    five: {name:  FIVE, weakTo:[TWO,  FIVE, SIX,  SEVN],       resists:[ONE,  THRE],
             role: {name:"Gurantee", desc:"Last attack hits even if knocked out"}, mvpl:  MP5},
-    six:  {name:  SIX,  weakTo:[TWO,  FOUR, FIVE, SEVN],        resists:[ONE,  SIX,  NINE],
+    six:  {name:  SIX,  weakTo:[TWO,  FOUR, FIVE, SEVN],       resists:[ONE,  SIX,  NINE],
             role: {name:"Wild Card", desc:"Can learn three moves"}, mvpl: MP6 },
-    sevn: {name:  SEVN, weakTo:[THRE, FOUR, SEVN, NINE],        resists:[ONE,  TWO,  SIX],
+    sevn: {name:  SEVN, weakTo:[THRE, FOUR, SEVN, FIVE, NINE], resists:[ONE,  TWO,  SIX],
             role: {name:"Survivor", desc:"Recovers 1/8 at the end of every turn"}, mvpl: MP7 },
-    eigh: {name:  EIGH, weakTo:[ONE,  FOUR, FIVE, SIX,  NINE],  resists:[THRE, FIVE, SEVN],
+    eigh: {name:  EIGH, weakTo:[ONE,  FOUR, SIX,  NINE],       resists:[THRE, FIVE, SEVN],
             role: {name:"Mixer", desc: "Recieved STAB is halved and non STAB is doubled"}, mvpl: MP8 },
-    nine: {name:  NINE, weakTo:[ZERO, FOUR, SEVN],              resists:[FIVE, NINE],
+    nine: {name:  NINE, weakTo:[ZERO, FOUR, SEVN],             resists:[NINE],
             role: {name:"Heavy Hitter", desc: "Damage done is doubled if the same move was used last turn"}, mvpl: MP9 }
     }
   //object to lookup types by name
@@ -133,7 +133,7 @@ theDataBank.factory('MovesV1', function() {
       return moves[lookup[id]];
     },
     learnedBy: function(mID) {
-      var learnable = ['ab'];
+      var learnable = [];
       //because of ordering i happens to be the caste # being dealt with
       for (var i=0; i < MOVEPOOLS.length; i++) {
         if (MOVEPOOLS[i].indexOf(mID) > -1) {learnable.push(i);};

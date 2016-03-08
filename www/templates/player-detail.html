@@ -7,8 +7,8 @@
     <div class="list card">
       <div class="item" id="header">Learnable Moves</div>
       <div ng-repeat="moves in playa.mvpl">
-        <div class="item" ng-click="toggleGroup(moves)"
-        ng-class="{active: isGroupShown(moves)}" id="clickable-list">
+        <div class="item" ng-click="toggleGroup(moves)" ng-class="{active: isGroupShown(moves)}"
+         id="clickable-list">
           M{{moves}}: {{Moves.getMove(moves).name}}
         </div>
         <div class="item-accordion" ng-show="isGroupShown(moves)">

@@ -5,7 +5,7 @@
       <div class="list list-inset">
         <!-- creates drop down selection for primary typing-->
         <label class="item item-input item-select" id="type-selection">
-          <div class="input-label" id="type-selection" >Player:</div>
+          <div class="input-label" id="type-selection" >Caste:</div>
           <select ng-model="player" id="type-selection" ng-change="calculateAll(player)">
             <!--option value="" selected >Choose a type</option-->
             <option ng-repeat="playa in Players">{{playa.name}}</option>

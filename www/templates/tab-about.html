@@ -2,7 +2,34 @@
 <div>
   <ion-pane>
     <ion-content>
-
+      <div class="list">
+        <div class="item" id="header">Fighters</div>
+        <div class="item" id="nonclickable-list" style="text-align: left">
+          Fighters are the characters that form a team. Each fighter is a member of a caste
+          and this determines what roles it can assume, what moves it is allowed to
+          learn, and which castes it is weak or strong against. Most fighters can only learn
+          2 moves.
+        </div>
+      <div class="list">
+        <div class="item" id="header">Teams</div>
+        <div class="item" id="nonclickable-list" style="text-align: left">
+          A team consists of either 3 or 5 fighter all of whom hail from different castes.
+      </div>
+      <div class="list">
+        <div class="item" id="header">Damage</div>
+        <div class="item" id="nonclickable-list" style="text-align: left">
+          A damaging move always does 1/8 or more of a fighter's health, which is the damage
+          recieved from a resisted move. A neutral move is 1/4 and a move a fighter is weak to
+          does 1/2. If a fighter's attack that corresponds to their own caste then there is a
+          same caste attack bonus (SCAB) which doubles the damage done.
+      </div>
+      <div class="list">
+        <div class="item" id="header">Order of a Turn</div>
+        <div class="item" id="nonclickable-list" style="text-align: left">
+          Switches take place before attacks and in both cases higher castes go first.
+          A fighter can choose to learn one less move and is rewarded the ability to go before
+          the next 5 higher castes (imagine their new caste being 5.5 higher).
+      </div>
     </ion-content>
   </ion-pane>
 </div>

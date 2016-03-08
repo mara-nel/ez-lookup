@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.ionicframework.pokemontype560204;
+package com.ionicframework.bday481191;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
