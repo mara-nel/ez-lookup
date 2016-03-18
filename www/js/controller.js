@@ -60,14 +60,25 @@ theDataBank.controller("PlayerDetailCtrl", function($scope, $stateParams, Player
 
 theDataBank.controller("MovesCtrl", function($scope, MovesV1) {
   $scope.Moves = MovesV1.getMoves();
-})
+  // creates accordion list
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
 
-theDataBank.controller("MoveDetailCtrl", function($scope, $stateParams, MovesV1) {
-  $scope.move = MovesV1.getMove($stateParams.move);
-  $scope.learnedBy = MovesV1.learnedBy($scope.move.id);
   $scope.numToWord = {0:'Zero', 1:'One', 2:'Two', 3:'Three', 4:'Four',
                       5:'Five', 6:'Six', 7:'Seven', 8:'Eight', 9:'Nine'}
+  $scope.learnedBy = function(move) {
+    return MovesV1.learnedBy(move.id);
+  }
 })
+
 
 theDataBank.controller("TypeCtrl", function($scope, $ionicSideMenuDelegate, $location) {
   $scope.toggleMenu = function() {

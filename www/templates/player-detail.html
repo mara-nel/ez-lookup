@@ -7,12 +7,12 @@
     <div class="list card">
       <div class="item" id="header">Learnable Moves</div>
       <div ng-repeat="moves in playa.mvpl">
-        <div class="item" ng-click="toggleGroup(moves)" ng-class="{active: isGroupShown(moves)}"
-         id="clickable-list">
+        <ion-item class="item" id="clickable-list"
+        ng-click="toggleGroup(moves)" ng-class="{active: isGroupShown(moves)}">
           M{{moves}}: {{Moves.getMove(moves).name}}
-        </div>
-        <div class="item-accordion" ng-show="isGroupShown(moves)">
-          <ion-item  id="expanded-list">{{Moves.getMove(moves).desc}}</ion-item>
+        </ion-item>
+        <div class="item-accordion" ng-show="isGroupShown(moves)" id="expanded-list">
+          <div class="item" id="expanded-list">{{Moves.getMove(moves).desc}}</div>
         </div>
       </div>
     </div>

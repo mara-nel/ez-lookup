@@ -84,15 +84,6 @@ theDataBank.config(function($stateProvider, $urlRouterProvider, $ionicConfigProv
       }
     })
 
-    .state('tab.moves-detail', {
-      url: '/moves/:move',
-      views: {
-        'tab-moves': {
-          templateUrl: 'templates/move-detail.html',
-          controller: 'MoveDetailCtrl'
-        }
-      }
-    })
     .state('tab.about', {
       url: '/about',
       views: {

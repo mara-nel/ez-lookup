@@ -3,11 +3,25 @@
   <ion-pane>
     <ion-content>
       <div class="list list-inset">
-        <ion-item class="item item-icon-right" ng-repeat="m in Moves"
-        id="clickable-list" href="#/tab/moves/{{m.id}}">
-          <i class="icon ion-chevron-right"></i>
-          M{{m.id}}: {{m.name}}
-        </ion-item>
+        <div ng-repeat="move in Moves">
+          <ion-item class="item" id="clickable-list"
+            ng-click="toggleGroup(move)" ng-class="{active: isGroupShown(move)}">
+            M{{move.id}}: {{move.name}}
+          </ion-item>
+          <div class="item-accordion" ng-show="isGroupShown(move)" id="expanded-list">
+            <div class="row">
+              <div class="col">{{move.desc}}</div>
+            </div>
+            <div class="row">
+              <div class="col">Learned By:</div>
+              <div class="col">
+                <div ng-repeat="casteId in learnedBy(move)">
+                Caste {{numToWord[casteId]}}<br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </ion-content>
   </ion-pane>

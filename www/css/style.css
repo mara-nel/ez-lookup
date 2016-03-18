@@ -78,3 +78,5 @@
 .card-aggressive .item{
   background-color: aggressive;
 }
+
+hr { width:100%; height:1px; background: #FFFFFF }
